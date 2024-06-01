@@ -7,3 +7,4 @@ install:
 run:
 	nvcc -o exe main.cu
 	./exe
+	rm -rf exe
