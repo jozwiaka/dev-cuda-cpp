@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cuda_runtime.h>
+#include <cstdio>
 
 __global__ void vectorAdd(float *a, float *b, float *c, int n)
 {
     int index = threadIdx.x + blockIdx.x * blockDim.x;
     if (index < n)
     {
+        printf("Index: %d\n", index);
         c[index] = a[index] + b[index];
     }
 }
@@ -55,6 +57,7 @@ int main()
             std::cerr << "Error: Incorrect result at index " << i << std::endl;
             break;
         }
+        std::cout << "h_c[" << i << "] = " << h_c[i] << std::endl;
     }
 
     std::cout << "Vector addition successful!" << std::endl;
